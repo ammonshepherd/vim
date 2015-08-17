@@ -1,23 +1,46 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype off                  " required for Vundle, turned back of after Vundle stuff
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Theme type stuff
+"
 syntax on
 set background=dark
 colorscheme distinguished
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" The Leader
+"
 let mapleader = ","
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"" Tab and Window commands
 map <leader>e :Explore<CR>
 " http://vimcasts.org/episodes/the-edit-command/
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
-map <leader>ew :edit %%
+" prompt for file name to open in current window
+map <leader>ew :edit %% 
+" prompt for file name, current directory, to be opened in horizontal split window
 map <leader>es :split %%
+" prompt for file name, current directory, to be opened in horizontal split window
 map <leader>ev :vsplit %%
+" prompt for file name, current directory, to be opened in new tab
 map <leader>et :tabe %%
-
 " http://vimcasts.org/episodes/working-with-tabs/
+" move to next tab
 map <leader>f gt<CR>
+" move to previous tab
 map <leader>a gT<CR>
+" open new tab with file explorer
 map <leader>t :tabe %:h<CR>
+
+set splitbelow
+set splitright
+
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""   VUNDLE 
@@ -46,7 +69,7 @@ call vundle#begin()
 	Plugin 'scrooloose/syntastic'
 
 	" load markdown files in browser
-	Plugin 'shime/vim-livedown'
+  Plugin 'JamshedVesuna/vim-markdown-preview'
 
   " Highlight CSS colors
   Plugin 'ap/vim-css-color'
@@ -69,24 +92,37 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"" lightline settings
+" vim-markdown-preview settings
+" Install grip: https://github.com/joeyespo/grip
+"
+let vim_markdown_preview_github=1
+" Disable folding by default in Markdown files
+let g:vim_markdown_folding_disabled=1
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" lightline settings
+"
 let g:lightline = {
     \ 'colorscheme': 'wombat',
     \ }
 set laststatus=2
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
+" Spelling
 " Clear the styles for misspelled words
+"
 hi clear SpellBad
 " underline misspelled words
 hi SpellBad cterm=underline 
 "Set the color to orange-ish
 hi SpellBad ctermfg=166 
 
-" Disable folding by default in Markdown files
-let g:vim_markdown_folding_disabled=1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indentation and Spaces
+"
 set autoindent " auto indent after {
 set shiftwidth=2 " number of space characters inserted for indentation
 set expandtab " inserts spaces instead of tabs
@@ -102,8 +138,11 @@ set textwidth=0
 set wrapmargin=0
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Movement Keys
 " Allow j and k keys to move cursor through soft wrapped lines, AND still
 " allow for relative numbers
+"
 nnoremap <silent> k :<C-U>call Up(v:count)<CR>
 vnoremap <silent> k gk
 
@@ -127,14 +166,19 @@ function! Up(vcount)
 endfunction
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Line Numbers
 " Line numbers and relative line numbers, and a mapping to turn them on and off.
+"
 set relativenumber
 set number
 :nmap <C-N><C-N> :set invnumber <bar> :set invrelativenumber<CR>
 
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Last Position
 " Return to last edit position when opening files (You want this!)
+"
 autocmd BufReadPost *
      \ if line("'\"") > 0 && line("'\"") <= line("$") |
      \   exe "normal! g`\"" |
@@ -143,26 +187,9 @@ autocmd BufReadPost *
 set viminfo^=%
 
 
-set splitbelow
-set splitright
-
-""""""""""""""""""""""""""""""""""""""""
-"http://github.com/shime/vim-livedown
-""""""""""""""""""""""""""""""""""""""""
-" should markdown preview get shown automatically upon opening markdown buffer
-let g:livedown_autorun = 0
-" should the browser window pop-up upon previewing
-let g:livedown_open = 1 
-" the port on which Livedown server will run
-let g:livedown_port = 1337
-"global function you can call explicitly for previews
-map gm :LivedownPreview<CR>
-""""""""""""""""""""""""""""""""""""""""
-
-
-""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Automatic Paste mode
-""""""""""""""""""""""""""""""""""""""""
+"
 function! WrapForTmux(s)
     if !exists('$TMUX')
         return a:s
@@ -184,14 +211,14 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-""""""""""""""""""""""""""""""""""""""""
 
 
-""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Undo
+" undo info persists after file closed
 " following from: http://amix.dk/vim/vimrc.html
-""""""""""""""""""""""""""""""""""""""""
+"
 set undodir=~/.vim/undodir
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-""""""""""""""""""""""""""""""""""""""""
