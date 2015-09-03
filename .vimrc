@@ -15,6 +15,54 @@ colorscheme distinguished
 "
 let mapleader = ","
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""   VUNDLE 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+call vundle#begin()
+	" alternatively, pass a path where Vundle should install plugins
+	"call vundle#begin('~/some/path/here')
+
+	" let Vundle manage Vundle, required
+	Plugin 'gmarik/Vundle.vim'
+
+	" The following are examples of different formats supported.
+	" Keep Plugin commands between vundle#begin/end.
+	"
+	" plugin on GitHub repo
+	Plugin 'tpope/vim-fugitive'
+	Plugin 'tpope/vim-surround'
+  Plugin 'tpope/vim-commentary'
+  Plugin 'tpope/vim-abolish'
+  Plugin 'jiangmiao/auto-pairs'
+
+  Plugin 'itchyny/lightline.vim'
+
+	" Syntax highlighter for most languages
+	Plugin 'scrooloose/syntastic'
+
+  " Highlight CSS colors
+  Plugin 'ap/vim-css-color'
+
+	" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "" Tab and Window commands
@@ -43,61 +91,28 @@ set splitright
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""   VUNDLE 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-	" alternatively, pass a path where Vundle should install plugins
-	"call vundle#begin('~/some/path/here')
-
-	" let Vundle manage Vundle, required
-	Plugin 'gmarik/Vundle.vim'
-
-	" The following are examples of different formats supported.
-	" Keep Plugin commands between vundle#begin/end.
-	"
-	" plugin on GitHub repo
-	Plugin 'tpope/vim-fugitive'
-	Plugin 'tpope/vim-surround'
-  Plugin 'tpope/vim-commentary'
-
-  Plugin 'itchyny/lightline.vim'
-
-	" Syntax highlighter for most languages
-	Plugin 'scrooloose/syntastic'
-
-	" load markdown files in browser
-  Plugin 'JamshedVesuna/vim-markdown-preview'
-
-  " Highlight CSS colors
-  Plugin 'ap/vim-css-color'
-
-	" All of your Plugins must be added before the following line
-call vundle#end()            " required
-
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+" Vim and Markdown
 "
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" All .md files are treated as markdown shows
+" https://github.com/tpope/vim-markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-markdown-preview settings
-" Install grip: https://github.com/joeyespo/grip
+" https://github.com/suan/vim-instant-markdown
 "
-let vim_markdown_preview_github=1
+let g:instant_markdown_autostart = 0
+autocmd! filetype markdown nnoremap <buffer> <leader>p :InstantMarkdownPreview<CR>
+
+
+" Install grip: https://github.com/joeyespo/grip Activate with Ctr-p
+" display images with the hotkey mapping
+" let vim_markdown_preview_toggle=1
+" Use GitHub flavoured markdown.
+" let vim_markdown_preview_github=1
+" Remove temp html file
+" let vim_markdown_preview_temp_file=0
+
 " Disable folding by default in Markdown files
-let g:vim_markdown_folding_disabled=1
+" let g:vim_markdown_folding_disabled=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -172,7 +187,7 @@ endfunction
 "
 set relativenumber
 set number
-:nmap <C-N><C-N> :set invnumber <bar> :set invrelativenumber<CR>
+nmap <C-N><C-N> :set invnumber <bar> :set invrelativenumber<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -185,6 +200,9 @@ autocmd BufReadPost *
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
+
+
+nmap <leader>o o<esc>k
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
