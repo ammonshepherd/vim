@@ -99,20 +99,10 @@ autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " https://github.com/suan/vim-instant-markdown
 "
+" Don't automatically open a browser tap
 let g:instant_markdown_autostart = 0
+" Use the ,p command to open a browser
 autocmd! filetype markdown nnoremap <buffer> <leader>p :InstantMarkdownPreview<CR>
-
-
-" Install grip: https://github.com/joeyespo/grip Activate with Ctr-p
-" display images with the hotkey mapping
-" let vim_markdown_preview_toggle=1
-" Use GitHub flavoured markdown.
-" let vim_markdown_preview_github=1
-" Remove temp html file
-" let vim_markdown_preview_temp_file=0
-
-" Disable folding by default in Markdown files
-" let g:vim_markdown_folding_disabled=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
