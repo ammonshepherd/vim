@@ -142,6 +142,8 @@ set nolist  " list disables linebreak
 set textwidth=0
 set wrapmargin=0
 
+" add spell checking and automatic wrapping at 72 columns to commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Movement Keys
