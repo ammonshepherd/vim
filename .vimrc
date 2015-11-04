@@ -38,6 +38,8 @@ call vundle#begin()
   Plugin 'tpope/vim-abolish'
   Plugin 'jiangmiao/auto-pairs'
 
+  Plugin 'tmux-plugins/vim-tmux'
+
   Plugin 'itchyny/lightline.vim'
 
 	" Syntax highlighter for most languages
@@ -143,7 +145,8 @@ set textwidth=0
 set wrapmargin=0
 
 " add spell checking and automatic wrapping at 72 columns to commit messages
-autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd filetype gitcommit setlocal spell textwidth=72
+autocmd filetype markdown setlocal spell textwidth=80
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Movement Keys
