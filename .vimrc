@@ -44,6 +44,13 @@ call vundle#begin()
 
 	" Syntax highlighter for most languages
 	Plugin 'scrooloose/syntastic'
+  Plugin 'gavocanov/vim-js-indent'
+  "Plugin 'othree/yajs.vim'
+  "Plugin 'jelera/vim-javascript-syntax'
+  Plugin 'pangloss/vim-javascript'
+  Plugin 'digitaltoad/vim-pug'
+
+  Plugin 'danchoi/ri.vim'
 
   " Highlight CSS colors
   Plugin 'ap/vim-css-color'
@@ -95,17 +102,22 @@ set splitright
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim and Markdown
 "
-" All .md files are treated as markdown shows
+" All .md and .markdown files are treated as markdown
 " https://github.com/tpope/vim-markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " https://github.com/suan/vim-instant-markdown
-"
-" Don't automatically open a browser tap
+" Don't automatically open a browser tab
 let g:instant_markdown_autostart = 0
-" Use the ,p command to open a browser
+" Use the ,p command to open a browser tab with the markdown in github flavor
 autocmd! filetype markdown nnoremap <buffer> <leader>p :InstantMarkdownPreview<CR>
 
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pug syntax
+"
+autocmd BufNewFile,BufReadPost *.pug set filetype=pug
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lightline settings
@@ -201,8 +213,13 @@ nmap <leader>o o<esc>k
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Automatic Paste mode
+" Copy and Paste Settings
 "
+
+" Copy to system clipboard
+set clipboard=unnamed
+
+" Automatic Paste mode
 function! WrapForTmux(s)
     if !exists('$TMUX')
         return a:s
