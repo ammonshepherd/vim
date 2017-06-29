@@ -48,6 +48,7 @@ call vundle#begin()
   "Plugin 'othree/yajs.vim'
   "Plugin 'jelera/vim-javascript-syntax'
   Plugin 'pangloss/vim-javascript'
+  Plugin 'isRuslan/vim-es6'
   Plugin 'digitaltoad/vim-pug'
 
   Plugin 'danchoi/ri.vim'
@@ -67,6 +68,7 @@ filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+" :PluginUpdate     - updates all plugins
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
@@ -192,7 +194,7 @@ endfunction
 " Line Numbers
 " Line numbers and relative line numbers, and a mapping to turn them on and off.
 "
-set relativenumber
+"set relativenumber "not diggin this at the moment - 5/2/17
 set number
 nmap <C-N><C-N> :set invnumber <bar> :set invrelativenumber<CR>
 
