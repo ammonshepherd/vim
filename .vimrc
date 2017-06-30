@@ -250,7 +250,10 @@ inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 " undo info persists after file closed
 " following from: http://amix.dk/vim/vimrc.html
 "
-set undodir=~/.vim/undodir
-set undofile
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+if v:version >= 730
+  set undodir=~/.vim/undodir
+  set undofile
+  set undolevels=1000 "maximum number of changes that can be undone
+  set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+  set colorcolumn=79
+endif
