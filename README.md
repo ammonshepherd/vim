@@ -17,6 +17,10 @@
   ```
   git clone https://github.com/mossiso/vim.git .vim
   ```
+## Link the .vimrc file
+  ```
+  ln -s .vim/.vimrc .vimrc
+  ```
 
 ## Clone the Vundle plugin
 
