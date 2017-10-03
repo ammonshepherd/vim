@@ -56,6 +56,10 @@ call vundle#begin()
   " Highlight CSS colors
   Plugin 'ap/vim-css-color'
 
+  " Markdown and folding
+  Plugin 'godlygeek/tabular'
+  Plugin 'plasticboy/vim-markdown'
+
 	" All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -104,6 +108,8 @@ set splitright
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim and Markdown
 "
+autocmd filetype markdown setlocal spell textwidth=80
+
 " All .md and .markdown files are treated as markdown
 " https://github.com/tpope/vim-markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -114,6 +120,11 @@ let g:instant_markdown_autostart = 0
 " Use the ,p command to open a browser tab with the markdown in github flavor
 autocmd! filetype markdown nnoremap <buffer> <leader>p :InstantMarkdownPreview<CR>
 
+" https://github.com/plasticboy/vim-markdown
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_no_extensions_in_markdown = 1
+let g:vim_markdown_autowrite = 1
+nnoremap <Space> za
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -160,7 +171,7 @@ set wrapmargin=0
 
 " add spell checking and automatic wrapping at 72 columns to commit messages
 autocmd filetype gitcommit setlocal spell textwidth=72
-autocmd filetype markdown setlocal spell textwidth=80
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Movement Keys
