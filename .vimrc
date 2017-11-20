@@ -41,6 +41,8 @@ call vundle#begin()
   Plugin 'tmux-plugins/vim-tmux'
 
   Plugin 'itchyny/lightline.vim'
+  "Make gvim-only colorschemes work transparently in terminal vim 
+  Plugin 'godlygeek/csapprox'
 
 	" Syntax highlighter for most languages
 	Plugin 'scrooloose/syntastic'
@@ -207,7 +209,7 @@ endfunction
 "
 "set relativenumber "not diggin this at the moment - 5/2/17
 set number
-nmap <C-N><C-N> :set invnumber <bar> :set invrelativenumber<CR>
+noremap <C-N><C-N> :set invnumber<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
