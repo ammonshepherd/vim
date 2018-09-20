@@ -61,6 +61,7 @@ call vundle#begin()
   " Markdown and folding
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
+  Plugin 'suan/vim-instant-markdown'
 
 	" All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -126,6 +127,9 @@ autocmd! filetype markdown nnoremap <buffer> <leader>p :InstantMarkdownPreview<C
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
 let g:vim_markdown_autowrite = 1
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+let vim_markdown_preview_browser='Google Chrome'
 nnoremap <Space> za
 
 
