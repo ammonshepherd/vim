@@ -3,19 +3,16 @@
 ## Create the `.vim` folder if it doesn't exist
 
 - In your Terminal.app (for Mac)
-  ```
-  # Get to  your home directory
-  cd
-
-  # Make a new folder
-  mkdir .vim
-  ```
+  - Get to  your home directory
+    - `cd`
+  - Make a new folder
+    - `mkdir .vim`
 
 ## Clone the .vim folder
 
 - Clone from this repo
   ```
-  git clone https://github.com/mossiso/vim.git .vim
+  git clone https://github.com/ammonshepherd/vim.git .vim
   ```
 ## Link the .vimrc file
   ```

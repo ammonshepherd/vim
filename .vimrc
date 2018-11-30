@@ -111,7 +111,7 @@ set splitright
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim and Markdown
 "
-autocmd filetype markdown setlocal spell textwidth=80
+autocmd filetype markdown setlocal spell textwidth=79
 
 " All .md and .markdown files are treated as markdown
 " https://github.com/tpope/vim-markdown
@@ -161,10 +161,14 @@ hi SpellBad ctermfg=166
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indentation and Spaces
 "
-set autoindent " auto indent after {
-set shiftwidth=2 " number of space characters inserted for indentation
-set expandtab " inserts spaces instead of tabs
-set tabstop=2 " number of spaces the tab is.
+filetype plugin indent on
+set autoindent    " align the new line indent with the previous line
+set shiftwidth=4  " number of space characters inserted for indentation
+set expandtab     " inserts spaces instead of tabs
+set tabstop=4     " number of spaces the tab is.
+set textwidth=79  " lines longer than 79 columns will be broken
+set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+set shiftround    " round indent to multiple of 'shiftwidth'
 set bs=indent,eol,start		" allow backspacing over everything in insert mode
 
 " Word wrapping visually, but no explicit line break unless Enter explicitly
@@ -172,7 +176,6 @@ set bs=indent,eol,start		" allow backspacing over everything in insert mode
 set wrap
 set linebreak
 set nolist  " list disables linebreak
-set textwidth=0
 set wrapmargin=0
 
 " add spell checking and automatic wrapping at 72 columns to commit messages
