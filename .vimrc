@@ -22,46 +22,44 @@ let mapleader = ","
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin()
-	" alternatively, pass a path where Vundle should install plugins
-	"call vundle#begin('~/some/path/here')
+    " alternatively, pass a path where Vundle should install plugins
+    "call vundle#begin('~/some/path/here')
 
-	" let Vundle manage Vundle, required
-	Plugin 'gmarik/Vundle.vim'
+    " let Vundle manage Vundle, required
+    Plugin 'gmarik/Vundle.vim'
 
-	" The following are examples of different formats supported.
-	" Keep Plugin commands between vundle#begin/end.
-	"
-	" plugin on GitHub repo
-	Plugin 'tpope/vim-fugitive'
-	Plugin 'tpope/vim-surround'
-  Plugin 'tpope/vim-commentary'
-  Plugin 'tpope/vim-abolish'
-  Plugin 'jiangmiao/auto-pairs'
+    Plugin 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-commentary'
+    Plugin 'tpope/vim-abolish'
+    Plugin 'jiangmiao/auto-pairs'
+    Plugin 'tomtom/tcomment_vim'
 
-  Plugin 'tmux-plugins/vim-tmux'
+    Plugin 'tmux-plugins/vim-tmux'
 
-  Plugin 'itchyny/lightline.vim'
-  "Make gvim-only colorschemes work transparently in terminal vim 
-  Plugin 'godlygeek/csapprox'
+    Plugin 'itchyny/lightline.vim'
+    "Make gvim-only colorschemes work transparently in terminal vim 
+    Plugin 'godlygeek/csapprox'
 
-	" Syntax highlighter for most languages
-	Plugin 'scrooloose/syntastic'
-  Plugin 'gavocanov/vim-js-indent'
-  "Plugin 'othree/yajs.vim'
-  "Plugin 'jelera/vim-javascript-syntax'
-  Plugin 'pangloss/vim-javascript'
-  Plugin 'isRuslan/vim-es6'
-  Plugin 'digitaltoad/vim-pug'
+    " Syntax highlighter for most languages
+    Plugin 'scrooloose/syntastic'
+    Plugin 'gavocanov/vim-js-indent'
+    "Plugin 'othree/yajs.vim'
+    "Plugin 'jelera/vim-javascript-syntax'
+    Plugin 'pangloss/vim-javascript'
+    Plugin 'isRuslan/vim-es6'
+    Plugin 'digitaltoad/vim-pug'
+    Plugin 'chr4/nginx.vim'
 
-  Plugin 'danchoi/ri.vim'
+    Plugin 'danchoi/ri.vim'
 
-  " Highlight CSS colors
-  Plugin 'ap/vim-css-color'
+    " Highlight CSS colors
+    Plugin 'ap/vim-css-color'
 
-  " Markdown and folding
-  Plugin 'godlygeek/tabular'
-  Plugin 'plasticboy/vim-markdown'
-  Plugin 'suan/vim-instant-markdown'
+    " Markdown and folding
+    Plugin 'godlygeek/tabular'
+    Plugin 'plasticboy/vim-markdown'
+    Plugin 'suan/vim-instant-markdown'
 
 	" All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -167,7 +165,7 @@ set shiftwidth=4  " number of space characters inserted for indentation
 set expandtab     " inserts spaces instead of tabs
 set tabstop=4     " number of spaces the tab is.
 set textwidth=79  " lines longer than 79 columns will be broken
-set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
+"set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set shiftround    " round indent to multiple of 'shiftwidth'
 set bs=indent,eol,start		" allow backspacing over everything in insert mode
 
@@ -178,8 +176,11 @@ set linebreak
 set nolist  " list disables linebreak
 set wrapmargin=0
 
+" File type specific spacings
 " add spell checking and automatic wrapping at 72 columns to commit messages
-autocmd filetype gitcommit setlocal spell textwidth=72
+autocmd filetype gitcommit setlocal spell textwidth=72 expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -229,6 +230,7 @@ autocmd BufReadPost *
      \ endif
 " Remember info about open buffers on close
 set viminfo^=%
+set hidden " switch to another buffer without raising an error message
 
 
 nmap <leader>o o<esc>k
@@ -277,3 +279,9 @@ if v:version >= 730
   set undoreload=10000 "maximum number lines to save for undo on a buffer reload
   set colorcolumn=79
 endif
+
+
+" Type :w!! to write a file as sudo, when you forgot to open it with sudo
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+
