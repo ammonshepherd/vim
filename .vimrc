@@ -7,7 +7,12 @@ filetype off                  " required for Vundle, turned back of after Vundle
 "
 syntax on
 set background=dark
-colorscheme distinguished
+set encoding=utf-8
+"colorscheme distinguished
+colorscheme PaperColor
+
+""" python specific settings  """
+let python_highlight_all=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -28,6 +33,16 @@ call vundle#begin()
     " let Vundle manage Vundle, required
     Plugin 'gmarik/Vundle.vim'
 
+    " Color Schemes
+    Plugin 'NLKNguyen/papercolor-theme'
+    Plugin 'sainnhe/everforest'
+
+    " Python specific plugins
+    Plugin 'vim-scripts/indentpython.vim'
+    Plugin 'dense-analysis/ale'
+    " Plugin 'vim-syntastic/syntastic'
+    Plugin 'nvie/vim-flake8'
+
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-commentary'
@@ -42,7 +57,7 @@ call vundle#begin()
     Plugin 'godlygeek/csapprox'
 
     " Syntax highlighter for most languages
-    Plugin 'scrooloose/syntastic'
+    " Plugin 'scrooloose/syntastic'
     Plugin 'gavocanov/vim-js-indent'
     "Plugin 'othree/yajs.vim'
     "Plugin 'jelera/vim-javascript-syntax'
@@ -168,6 +183,7 @@ set textwidth=79  " lines longer than 79 columns will be broken
 "set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPACE
 set shiftround    " round indent to multiple of 'shiftwidth'
 set bs=indent,eol,start		" allow backspacing over everything in insert mode
+set showmatch     " show the matching part of the pair for [] {} and ()
 
 " Word wrapping visually, but no explicit line break unless Enter explicitly
 " pressed
@@ -284,4 +300,39 @@ endif
 " Type :w!! to write a file as sudo, when you forgot to open it with sudo
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
+""""""""""""""""""""""""""""""""""
+"  PaperColor Theme Settings
+"""""""""""""""""""""""""""""""""""
 
+
+let g:PaperColor_Theme_Options = {
+    \   'theme': {
+    \     'default': {
+    \       'allow_bold': 1,
+    \       'allow_italic': 0,
+    \       'transparent_background': 1
+    \     }
+    \   },
+    \   'language': {
+    \     'python': {
+    \       'highlight_builtins' : 1
+    \     },
+    \     'c': {
+    \       'highlight_builtins' : 1
+    \     },
+    \     'cpp': {
+    \       'highlight_standard_library': 1
+    \     }
+    \   }
+    \ }
+
+"""""""""""""""""""""""""""""""""""""
+" Everforest settings
+""""""""""""""""""""""""""""""""""""""
+
+" Important!!
+if has('termguicolors')
+    set termguicolors
+endif
+
+let g:everforest_better_performance = 1
