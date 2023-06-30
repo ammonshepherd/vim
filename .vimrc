@@ -9,10 +9,12 @@ syntax on
 set background=dark
 set encoding=utf-8
 "colorscheme distinguished
-colorscheme PaperColor
+let g:seoul256_background = 233
+colorscheme seoul256
+"colorscheme jellybeans
 
 """ python specific settings  """
-let python_highlight_all=1
+"let python_highlight_all=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -34,8 +36,7 @@ call vundle#begin()
     Plugin 'gmarik/Vundle.vim'
 
     " Color Schemes
-    Plugin 'NLKNguyen/papercolor-theme'
-    Plugin 'sainnhe/everforest'
+    Plugin 'junegunn/seoul256.vim'
 
     " Python specific plugins
     Plugin 'vim-scripts/indentpython.vim'
@@ -43,6 +44,7 @@ call vundle#begin()
     " Plugin 'vim-syntastic/syntastic'
     Plugin 'nvie/vim-flake8'
 
+    Plugin 'sheerun/vim-polyglot'
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-surround'
     Plugin 'tpope/vim-commentary'
@@ -326,13 +328,3 @@ let g:PaperColor_Theme_Options = {
     \   }
     \ }
 
-"""""""""""""""""""""""""""""""""""""
-" Everforest settings
-""""""""""""""""""""""""""""""""""""""
-
-" Important!!
-if has('termguicolors')
-    set termguicolors
-endif
-
-let g:everforest_better_performance = 1
